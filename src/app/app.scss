@@ -1,19 +1,204 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 100px 20px;
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+
+  color: white;
+
+  background:
+    radial-gradient(circle at 50% 15%, rgba(110, 80, 255, 0.22), transparent 35%),
+    radial-gradient(circle at 10% 90%, rgba(0, 210, 255, 0.1), transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(190, 60, 255, 0.1), transparent 30%), #050611;
+}
+
+/* =========================
+   TITLE
+   ========================= */
+
+h1 {
+  margin: 0 auto 45px;
+
+  text-align: center;
+
+  font-size: clamp(38px, 6vw, 72px);
+  font-weight: 800;
+  letter-spacing: -3px;
+
+  background: linear-gradient(90deg, #ffffff, #a99cff, #5ee7ff, #ffffff);
+
+  background-size: 250% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  animation: titleGlow 6s linear infinite;
+
+  text-shadow: 0 0 40px rgba(120, 100, 255, 0.25);
+}
+
+/* =========================
+   INPUT
+   ========================= */
+
 input {
+  display: block;
+
   width: 100%;
-  max-width: 400px;
-  padding: 12px 16px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  padding: 22px 26px;
+
+  font-size: 18px;
+  color: #ffffff;
+
+  background: rgba(12, 16, 35, 0.85);
+
+  border: 1px solid rgba(130, 120, 255, 0.35);
+  border-radius: 20px;
+
   outline: none;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    0 0 40px rgba(100, 80, 255, 0.08),
+    inset 0 0 30px rgba(100, 80, 255, 0.04);
+
+  backdrop-filter: blur(20px);
+
+  transition: 0.3s ease;
+}
+
+input::placeholder {
+  color: #707697;
+}
+
+input:hover {
+  border-color: rgba(140, 130, 255, 0.65);
 }
 
 input:focus {
-  border-color: #4a90d9;
+  transform: translateY(-3px);
+
+  border-color: #8d7cff;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    0 0 25px rgba(130, 110, 255, 0.35),
+    0 0 80px rgba(0, 210, 255, 0.08);
 }
 
+/* =========================
+   AI RESPONSE
+   ========================= */
+
 p {
-  margin-top: 16px;
-  font-size: 16px;
-  color: #333;
+  position: relative;
+
+  width: 100%;
+  max-width: 760px;
+
+  margin: 30px auto 0;
+  padding: 26px 30px;
+
+  font-size: 17px;
+  line-height: 1.7;
+
+  color: #e5e8ff;
+
+  background: linear-gradient(135deg, rgba(20, 25, 52, 0.92), rgba(9, 13, 30, 0.92));
+
+  border: 1px solid rgba(100, 120, 255, 0.25);
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    0 0 50px rgba(80, 80, 255, 0.07);
+
+  backdrop-filter: blur(20px);
+}
+
+/* Línea luminosa */
+
+p::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 10%;
+
+  width: 80%;
+  height: 1px;
+
+  background: linear-gradient(90deg, transparent, #806cff, #00d9ff, #806cff, transparent);
+
+  box-shadow: 0 0 15px rgba(100, 100, 255, 0.8);
+}
+
+/* =========================
+   ERROR
+   ========================= */
+
+p.error {
+  color: #ff8fa3;
+
+  border-color: rgba(255, 80, 120, 0.3);
+
+  background: linear-gradient(135deg, rgba(60, 15, 30, 0.7), rgba(25, 10, 20, 0.8));
+
+  box-shadow: 0 0 30px rgba(255, 50, 100, 0.08);
+}
+
+/* =========================
+   TITLE ANIMATION
+   ========================= */
+
+@keyframes titleGlow {
+  0% {
+    background-position: 0% center;
+  }
+
+  50% {
+    background-position: 100% center;
+  }
+
+  100% {
+    background-position: 0% center;
+  }
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+  :host {
+    padding: 60px 16px;
+  }
+
+  h1 {
+    margin-bottom: 35px;
+    letter-spacing: -2px;
+  }
+
+  input {
+    padding: 18px 20px;
+    font-size: 16px;
+  }
+
+  p {
+    padding: 22px;
+    font-size: 16px;
+  }
 }

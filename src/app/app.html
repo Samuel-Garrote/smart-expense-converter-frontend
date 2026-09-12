@@ -1,5 +1,6 @@
+<h1>Your AI Expense Converter</h1>
 <input type="text" [formControl]="input" placeholder="e.g. Dinner in New York, 45 dollars" />
 <p>{{ result() }}</p>
 @if (hasError()) {
-  <p>Something went wrong. Please try again.</p>
+  <p class="error">Something went wrong. Please try again.</p>
 }
