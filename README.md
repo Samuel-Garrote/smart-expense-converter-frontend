@@ -1,59 +1,38 @@
-# SmartExpenseConverterFrontend
+# Smart Expense Converter — Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.8.
+Single-page Angular app: type a foreign expense in plain language, and see it converted to EUR in real time — no button, no page reloads.
 
-## Development server
+Live: [smart-expense-converter-frontend.vercel.app](https://smart-expense-converter-frontend.vercel.app)
 
-To start a local development server, run:
+## Tech stack
 
-```bash
+- **Angular 21** — standalone components, no NgModules
+- **Reactive Forms** + **RxJS** (\`debounceTime\` + \`switchMap\`) for reactive, debounced input handling
+- Plain **CSS** (in a \`.scss\` file)
+- Deployed on **Vercel**
+
+## How it works
+
+1. You type a sentence like \`Dinner in New York, 45 dollars\`.
+2. After 500ms of silence, the app calls the backend's \`/api/expenses/convert\` endpoint.
+3. If you keep typing before the previous request finishes, it's cancelled automatically (\`switchMap\`) — only the latest one counts.
+4. The result (or an error message, if the request fails) is displayed live.
+
+This frontend has no business logic of its own — all extraction and conversion happens on the [backend](https://github.com/Samuel-Garrote/smart-expense-converter-backend).
+
+## Running locally
+
+\`\`\`bash
+npm install
 ng serve
-```
+\`\`\`
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+By default, \`src/environments/environment.ts\` points to \`http://localhost:8080/api\` — you'll need the backend running locally too, or point it at the deployed Railway URL instead.
 
-## Code scaffolding
+## Building for production
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
+\`\`\`bash
 ng build
-```
+\`\`\`
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+\`environment.prod.ts\` (pointing to the Railway backend) is swapped in automatically via \`angular.json\`'s \`fileReplacements\`.
