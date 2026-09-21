@@ -23,7 +23,7 @@ export class App {
     // Detecta cuando cambia el texto.
     this.input.valueChanges
       .pipe(
-        debounceTime(500),
+        debounceTime(2000),
         switchMap((text) =>
           this.expenseService.convert(text ?? '').pipe(
             catchError(() => {
