@@ -49,6 +49,11 @@ h1 {
    INPUT
    ========================= */
 
+input,
+p {
+  box-sizing: border-box;
+}
+
 input {
   display: block;
 
